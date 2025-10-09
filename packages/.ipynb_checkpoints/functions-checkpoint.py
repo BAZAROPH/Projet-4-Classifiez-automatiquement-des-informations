@@ -86,3 +86,29 @@ def categorize_revenu(revenu: float):
         return "Moyen"
     else:
         return "Élevé"
+
+def type_separator(df: pd.DataFrame, exception:list=[]):
+    """
+        fonction qui sépare les colonnes catégorielles et numérique d'un data frame
+
+        -----------
+        parameters
+        df: DataFrame
+            jeu de données
+        exception: list()
+            liste des colonnes à ignorer
+
+        -------
+        returns
+        features: tuple()
+            les colonnes catégorielles et numériques
+    """
+    numeric = list()
+    categorical = list()
+    for column in df.columns:
+        if column not in exception:
+            if df[column].dtype == "int64" or df[column].dtype == "float64":
+                numeric.append(column)
+            elif df[column].dtype == "object":
+                categorical.append(column)
+    return (numeric, categorical)
