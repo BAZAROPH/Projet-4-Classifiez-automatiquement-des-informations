@@ -112,3 +112,6 @@ def type_separator(df: pd.DataFrame, exception:list=[]):
             elif df[column].dtype == "object":
                 categorical.append(column)
     return (numeric, categorical)
+
+
+
